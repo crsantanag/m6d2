@@ -2,3 +2,12 @@
     
     /* border: solid 1px red */
 }
+
+.w-15 {
+    width: 15%;
+}
+
+.noticia {
+    color: green;
+    background-color: white;
+}

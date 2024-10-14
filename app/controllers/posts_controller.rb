@@ -12,7 +12,10 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post
+            .left_joins(:comments)            # Incluye los posts sin comentarios
+            .group("posts.id")                # Agrupa por el ID del post
+            .order("COUNT(comments.id) DESC") # Ordena por el número de comentarios
   end
 
   # GET /posts/1 or /posts/1.json

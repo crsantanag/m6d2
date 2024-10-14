@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts, except: [ :index ]
+  resources :comments
+
+  resources :posts, except: [ :index ] do
+    resources :comments, only: [ :create, :destroy ] # Anida los comentarios dentro de los posts
+  end
+
   # Defines the root path route ("/")
   root "posts#index"
   get "/posts", to: "posts#index", as: "user_root" # Lo envío a posts despues de login (user_root es la root del usuario)

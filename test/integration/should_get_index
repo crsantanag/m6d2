@@ -1,0 +1,17 @@
+require "test_helper"
+
+class PostsControllerTest < ActionDispatch::IntegrationTest
+  test "should get index" do
+    # Simula una petición GET a la acción "index"
+    get posts_url
+
+    # Verifica que la respuesta sea exitosa (estado 200 OK)
+    assert_response :success
+
+    # Verifica que se haya asignado una variable @posts
+    assert_not_nil assigns(:posts)
+
+    # Verifica que la vista "index" se haya renderizado
+    assert_template :index
+  end
+end

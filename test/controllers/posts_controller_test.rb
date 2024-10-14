@@ -1,7 +1,11 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    @user = users(:valid_user)
+    sign_in @user
     @post = posts(:one)
   end
 

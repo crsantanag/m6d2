@@ -1,4 +1,12 @@
-<p style="color: green"><%= notice %></p>
+
+<% if notice %>
+    <p class="my-3">
+        <span class="d-block notice"> 
+            <%= notice %> 
+        </span>
+    </p>
+<% end %>
+
 
 <% content_for :title, "Posts" %>
 
@@ -11,16 +19,42 @@
 <% end %>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-6">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 mb-4">
 
-        <%= render post %>
+        <% @posts.each do |post| %>
 
-        </div>
+          <%= render post %>
+
+          <% post.comments.each do |comment| %> <!-- Itero sobre los comentarios de cada post -->
+            <div class="my-2 border rounded-2">
+
+              <div class="mx-3"> 
+                <strong class="mt-2 w-15 d-inline-block">Comentario</strong> : <%= comment.content %> 
+              </div>
+              <div class="mx-3"> 
+                <strong class="my-2 w-15 d-inline-block">Usuario   </strong> : <%= comment.user.name if comment.user %> 
+              </div>
+              <% if user_signed_in? && current_user.admin? %> 
+                <%= button_to "Eliminar comentario", post_comment_path(post, comment), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar este comentario?" }, class: "mb-3 mx-3 btn btn-danger" %>
+              <% end %>
+
+            </div>
+          <% end %>
+ 
+          <%= form_with(model: [ post, Comment.new ]) do |form| %>
+            <div class="form-group my-2">
+              <%= form.label :content, "Ingresa tu comentario" %>
+              <%= form.text_area :content, class: "form-control" %>
+            </div>
+            <%= form.submit "Comentar", class: "btn btn-primary" %>
+          <% end %>
+          <br>
+        <% end %>
+
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
 

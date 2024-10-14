@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "ps-2 col-6 border rounded-2", style:"height: 40px"  %>
   </div>
 
   <div class="field">
@@ -13,18 +13,19 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "ps-2 col-2 border rounded-2", style:"height: 40px"  %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmar password", class: "ps-2 col-2 border rounded-2", style:"height: 40px" %>
   </div>
-
+  <br>
+  
     <div class="my-2">
-      <%= f.label :name, "Nombre", class: "col-6" %>
+      <%= f.label :name, "Name", class: "col-6" %>
       <br>
-      <%= f.text_field :name,  placeholder: "Nombre", class: "ps-2 col-6 border rounded-2", style:"height: 40px" %>
+      <%= f.text_field :name,  placeholder: "Name", class: "ps-2 col-6 border rounded-2", style:"height: 40px" %>
     </div>
 
     <div class="my-2">
@@ -43,7 +44,7 @@
 
   <br>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-secondary" %>
   </div>
 <% end %>
 
