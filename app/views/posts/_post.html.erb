@@ -1,0 +1,13 @@
+<div id="<%= dom_id post %>">
+  
+  <div class="card my-2 ">
+    <div class="card-body">
+      <h5 class="card-title"> <%= post.title %> </h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary"> <strong>Autor:</strong> <%= post.user.name || post.user.email %> </h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary"> <strong>Creado el:</strong> <%= l(post.created_at, format: :long) %></h6>
+      <p class="card-text"> <%= post.description %> </p>
+      <a href="#" class="btn btn-primary">Comentar</a> | <a href="#" class="btn btn-primary">Ver comentarios</a>
+    </div>
+  </div>
+
+</div>
