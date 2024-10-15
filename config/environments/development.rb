@@ -34,7 +34,6 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-
   # Don"t care if the mailer can"t send.
   # CS: --- Lo cambio por .ppt ---
   # config.action_mailer.raise_delivery_errors = false
@@ -45,8 +44,8 @@ Rails.application.configure do
   # config.action_mailer.perform_caching = false
 
   # CS: --- Lo cambio por .ppt ---
-  # config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :sendmail
@@ -58,8 +57,8 @@ Rails.application.configure do
       address: "smtp.gmail.com",
       port: 587,
       domain: "example.com",
-      user_name: ENV["gmail_email"],
-      password: ENV["gmail_password"],
+      user_name: ENV["GMAIL_USERNAME"],
+      password:  ENV["GMAIL_PASSWORD"],
       authentication: "plain",
       enable_starttls_auto: true
   }

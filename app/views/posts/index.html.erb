@@ -31,10 +31,10 @@
             <div class="my-2 border rounded-2">
 
               <div class="mx-3"> 
-                <strong class="mt-2 w-15 d-inline-block">Comentario</strong> : <%= comment.content %> 
+                <strong class="mt-2 d-inline-block">Comentario</strong> : <%= comment.content %> 
               </div>
               <div class="mx-3"> 
-                <strong class="my-2 w-15 d-inline-block">Usuario   </strong> : <%= comment.user.name if comment.user %> 
+                <strong class="my-2 d-inline-block">Usuario   </strong> : <%= comment.user.name if comment.user %> 
               </div>
               <% if user_signed_in? && current_user.admin? %> 
                 <%= button_to "Eliminar comentario", post_comment_path(post, comment), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar este comentario?" }, class: "mb-3 mx-3 btn btn-danger" %>
