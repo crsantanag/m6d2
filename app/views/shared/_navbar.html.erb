@@ -1,25 +1,35 @@
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="px-2 px-md-10 mx-2 mx-md-10 navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
+
             <%= link_to 'The Rial News', root_path, class: 'navbar-brand' %>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <button type="button" class= "btn btn-light fs-5"> <%= link_to 'Posts', posts_path, class: 'nav-link' %> </button>
+                        <button type="button" class= "btn btn-light fs-5"> <%= link_to 'Posts', posts_path, class: 'nav-link' %> </button>
                     </li>
-                </ul>
-
-  
+                    <li>
+                        <div class="d-flex mt-2 align-items-center">
+                        <% if user_signed_in? %>
+                            <% if current_user.admin? %>
+                                <%= link_to "Crear post", new_post_path, class: "btn btn-info fs-5" %>
+                            <% end %>
+                        <% end %>
+                        </div>
+                    </li>
+                </ul> 
 
                 <div class="d-flex mx-2 justify-content-end align-items-center">
                     <% if user_signed_in? %>
 
                         <% if current_user.admin? %>
-                            <button type="button" class= "btn btn-danger fs-5 mx-2"> SU </button>
+                            <button type="button" class= "btn btn-info fs-5 mx-2"> SU </button>
                         <% end %>
 
                         <% if current_user.name.present? %>
@@ -36,6 +46,10 @@
                         </div>
                     <% end %>
                 </div>
+
             </div>
+
         </div>
+
     </nav>
+

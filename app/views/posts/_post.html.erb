@@ -1,18 +1,17 @@
 <div id="<%= dom_id post %>">
   
-  <div class="card my-4 ">
+  <div class="card mb-1">
     <div class="card-body">
-      <h5 class="card-title mb-3"> <%= post.title %> </h5>
+      <h5 class="card-title mb-2"> <%= post.title %> </h5>
       <h6 class="card-subtitle mb-2 text-body-secondary"> <strong class="d-inline-block">Autor</strong> : <%= post.user.name || post.user.email %> </h6>
       <h6 class="card-subtitle mb-2 text-body-secondary"> <strong class="d-inline-block">Creado el</strong> : <%= l(post.created_at, format: :long) %></h6>
       <p class="card-text"> <%= post.description %> </p>
       <br>
     
-      <a href="#" class="btn btn-primary">
-        Ver comentarios <span class="top-0 badge rounded-pill bg-danger"> <%= post.comments.count %> </span>
-      </a>
-
-      
+      <div class="d-flex justify-content-start"> 
+        <%= link_to "Ver comentarios".html_safe + " <span class='top-0 badge rounded-pill bg-danger'>#{post.comments.count}</span>".html_safe, post, class: "btn btn-primary" %>
+      </div>
+     
     </div>
   </div>
 

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!, except: [ :index, :show ]
   before_action :set_post, only: %i[ show edit update destroy ]
 
@@ -12,10 +14,10 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post
-            .left_joins(:comments)            # Incluye los posts sin comentarios
-            .group("posts.id")                # Agrupa por el ID del post
-            .order("COUNT(comments.id) DESC") # Ordena por el número de comentarios
+    @pagy, @posts = pagy(Post
+            .left_joins(:comments)             # Incluye los posts sin comentarios
+            .group("posts.id")                 # Agrupa por el ID del post
+            .order("COUNT(comments.id) DESC")) # Ordena por el número de comentarios
   end
 
   # GET /posts/1 or /posts/1.json

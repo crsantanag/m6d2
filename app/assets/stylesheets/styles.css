@@ -1,6 +1,9 @@
 * {
-    
     /* border: solid 1px red */
+}
+
+body {
+    padding-top: 100px; /* Ajusta este valor según la altura de tu navbar */
 }
 
 .w-15 {
