@@ -1,11 +1,11 @@
 <% content_for :title, "New post" %>
 
-<h1>New post</h1>
+<h1>Crear Noticia</h1>
 
 <%= render "form", post: @post %>
 
 <br>
 
 <div>
-  <%= link_to "Back to posts", posts_path %>
+  <%= link_to "Regresar", posts_path, class: "btn btn-light" %>
 </div>

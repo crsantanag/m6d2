@@ -2,15 +2,33 @@
   
   <div class="card mb-1">
     <div class="card-body">
+
+      <% if post.image.attached? %>
+      <div class="d-flex justify-content-center">
+        <%= image_tag post.image, class: "img-fluid", style: "max-width: 600px; max-height: 200px; width: 100%; height: auto;" %>
+      </div>
+      <% end %>
+
       <h5 class="card-title mb-2"> <%= post.title %> </h5>
       <h6 class="card-subtitle mb-2 text-body-secondary"> <strong class="d-inline-block">Autor</strong> : <%= post.user.name || post.user.email %> </h6>
       <h6 class="card-subtitle mb-2 text-body-secondary"> <strong class="d-inline-block">Creado el</strong> : <%= l(post.created_at, format: :long) %></h6>
       <p class="card-text"> <%= post.description %> </p>
       <br>
     
-      <div class="d-flex justify-content-start"> 
-        <%= link_to "Ver comentarios".html_safe + " <span class='top-0 badge rounded-pill bg-danger'>#{post.comments.count}</span>".html_safe, post, class: "btn btn-primary" %>
-      </div>
+      <% if action_name == "index" %>
+            <div class="d-flex justify-content-start"> 
+              <%= link_to "Ver post ".html_safe + " <span class='top-0 badge rounded-pill bg-danger'>#{post.comments.count}</span>".html_safe, post, class: "btn btn-primary" %>
+            </div>
+      <% elsif action_name == "show" %>
+          <% if user_signed_in? && current_user.admin? %> 
+            <div class="d-flex align-items-center">
+              <%= link_to   "Editar",   edit_post_path(@post), class: "col-3 col-md-1 py-2 me-2 btn btn-primary" %>
+              <%= button_to "Eliminar", @post, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "col-3 col-md-1 py-2 btn btn-warning", style:"width: 120px" %>
+            </div>
+          <% end%>
+      <% end %> 
+
+
      
     </div>
   </div>

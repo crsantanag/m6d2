@@ -1,7 +1,8 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post, local: true, multipart: true) do |form| %>
+
   <% if post.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "Error:") %> No se puede crear el post debido a:</h2>
+      <h2><%= pluralize(post.errors.count, "Error:") %> No se puede crear la noticia debido a:</h2>
 
       <ul>
         <% post.errors.each do |error| %>
@@ -14,24 +15,34 @@
   <div>
 
     <div class="my-2 col-12 col-md-6">
-      <%= form.label :image, "Imagen", class: "col-12" %>
+      <%= form.label :image, "Imagen (no obligatoria) - Tamaño relación 3:1 - Máx 1 Mb", class: "col-12" %>
       <br>
-      <%= form.text_field :image, required: true, placeholder: "Nombre del archivo de imagen", class: "ps-2 col-12 border rounded-2", style:"height: 40px" %>
+      <div class="d-flex align-items-center">
+      <%= form.file_field :image,  placeholder: "Cargar archivo de imagen", class: "ps-2 py-1 col-12 border rounded-2", style:"height: 40px" %>
+      </div>
     </div>
 
     <div class="my-2 col-12 col-md-6">
       <%= form.label :title, "Título", class: "col-12" %>
       <br>
-      <%= form.text_field :title, required: true, placeholder: "Nombre del título", class: "ps-2 col-12 border rounded-2", style:"height: 40px" %>
+      <%= form.text_field :title, required: true, placeholder: "Título", class: "ps-2 col-12 border rounded-2", style:"height: 40px" %>
     </div>
 
     <div class="my-2 col-12 col-md-6">
-      <%= form.label :description, "Título", class: "col-12" %>
+      <%= form.label :description, "Descripción", class: "col-12" %>
       <br>
-      <%= form.text_field :description, required: true, placeholder: "Relájese", class: "ps-2 col-12 border rounded-2", style:"height: 40px" %>
+      <%= form.text_field :description, required: true, placeholder: "Descripción", class: "ps-2 col-12 border rounded-2", style:"height: 40px" %>
     </div>
 
-  <div>
-    <%= form.submit %>
+    <% if action_name == "new" %>
+    <div class="pt-4">
+      <button type="submit" class="col-4 col-md-1 btn btn-secondary border">Crear post</button>
+    </div>
+    <% elsif action_name == "edit" %>
+    <div class="pt-4">
+      <button type="submit" class="col-4 col-md-1 btn btn-secondary border">Actualizar</button>
+    </div>
+    <% end %>
+
   </div>
 <% end %>

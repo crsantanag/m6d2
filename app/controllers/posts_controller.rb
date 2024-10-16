@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
   before_action :set_post, only: %i[ show edit update destroy ]
 
+  before_action :store_page_url, only: [ :show ]
+
   before_action only: [ :new, :create ] do
     authorize_request([ "author", "admin" ])
   end
@@ -22,6 +24,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
   end
 
   # GET /posts/new
@@ -64,18 +67,30 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
+    if @post.destroy
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: "Post eliminado" }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to post_url, notice: "No se puede eliminar el post porque tiene comentarios asociados" }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def store_page_url
+      if request.referer && request.referer.include?("page=")
+        session[:previous_page_url] = request.referer
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,12 +1,15 @@
 <% content_for :title, "Editing post" %>
 
-<h1>Editing post</h1>
+<h1>Editar noticia</h1>
 
 <%= render "form", post: @post %>
 
 <br>
 
 <div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+  <div class="d-flex"> 
+    <%= link_to "Regresar", posts_path, class: "btn btn-light me-2" %> 
+    <%= link_to "Volver al post ".html_safe + " <span class='top-0 badge rounded-pill bg-danger'>#{@post.comments.count}</span>".html_safe, post_path(@post), class: "btn btn-primary" %>
+  </div>
+
 </div>
