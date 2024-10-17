@@ -1,11 +1,3 @@
-<%- if controller_name != "sessions" %>
-  <%= link_to "Inicio sesión", new_session_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.registerable? && controller_name != "registrations" %>
-  <%= link_to "Registrarse", new_registration_path(resource_name),class: "mb-3 btn btn-secondary" %><br />
-<% end %>
-
 <%- if devise_mapping.recoverable? && controller_name != "passwords" && controller_name != "registrations" %>
   <%= link_to "Olvidó su password?", new_password_path(resource_name), class: "mb-3 btn btn-secondary" %><br />
 <% end %>

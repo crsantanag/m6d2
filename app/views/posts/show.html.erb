@@ -1,39 +1,51 @@
-<p style="color: red"><%= notice %></p>
 
 <div class="row justify-content-center">
   <div class="col-12 col-sm-6 mb-4">
+    
+      <p style="color: red; background-color: white"> <strong class="mx-2" > <%= notice %> </strong> </p> 
 
-  <%= render @post %>
+      <% if @comment && @comment.errors.any? %>
+        <div id="error_explanation" class="mx-2"  style="color: red">
+          <h2><%= pluralize(@comment.errors.count, "Error: ") %> No es posible guardar comentario</h2>
+          <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-        <%= form_with(model: [ @post, Comment.new ]) do |form| %>
-          <div class="form-group my-2">
-              <%= form.label :content, "Ingresa tu comentario" %>
-              <%= form.text_area :content, class: "form-control" %>
-          </div>
-          <%= form.submit "Comentar", class: "btn btn-primary" %>
-        <% end %>
-        <br>
+
+      <%= render @post %>
+
+      <%= form_with(model: [ @post, Comment.new ]) do |form| %>
+        <div class="form-group my-2">
+            <%= form.label :content, "Ingresa tu comentario" %>
+            <%= form.text_area :content, class: "form-control" %>
+        </div>
+        <%= form.submit "Comentar", class: "btn btn-primary" %>
+      <% end %>
+      <br>
         
 
-        <% @post.comments.each do |comment| %> <!-- Itero sobre los comentarios de cada post -->
+      <% @post.comments.order(created_at: :desc).each do |comment| %> <!-- Itero sobre los comentarios de cada post -->
           <div class="my-2 border rounded-2">
             <%= l(comment.created_at, format: :long) %> <br>
-            <div class="mx-3">
-              <strong class="mt-2 d-inline-block">Comentario</strong> : <%= comment.content %> 
-            </div>
-            <div class="mx-3"> 
-              <strong class="my-2 d-inline-block">Usuario   </strong> : <%= comment.user.name if comment.user %> 
+            <div class="mx-3 mb-2"> 
+              <strong class="d-inline-block">Usuario   </strong> : <%= comment.user.name if comment.user %> 
+              <br>
+              <strong class="d-inline-block">Comentario</strong> : <%= comment.content %> 
             </div>
             <% if user_signed_in? && current_user.admin? %> 
               <%= button_to "Eliminar comentario", post_comment_path(@post, comment), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar este comentario?" }, class: "mb-3 mx-3 btn btn-warning" %>
             <% end %>
 
           </div>
-        <% end %>
+      <% end %>
 
-        <%= link_to "Regresar", posts_path, class: "btn btn-light" %> |
-        <%= link_to "Volver al post", session[:previous_page_url] || posts_path, class: "btn btn-primary" %>
-  <br>  <br>
+      <%= link_to "Regresar", posts_path, class: "btn btn-light" %>
+      <br>
+      <br>
   </div>
 </div>
 

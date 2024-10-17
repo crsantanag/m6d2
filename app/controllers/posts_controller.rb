@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
   before_action :set_post, only: %i[ show edit update destroy ]
 
-  before_action :store_page_url, only: [ :show ]
+  # before_action :store_page_url, only: [ :show ]
 
   before_action only: [ :new, :create ] do
     authorize_request([ "author", "admin" ])
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -43,7 +44,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.html { redirect_to @post, notice: "Post fue creado exitosamente" }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +57,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.html { redirect_to @post, notice: "Post fue actualizado exitosamente" }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_request, only: [ :destroy ]
-  before_action :set_post, only: [ :create, :destroy ]
+  before_action :set_post, only: [ :create, :edit, :destroy ]
   before_action :set_comment, only: %i[ show edit update destroy ]
 
   # GET /comments or /comments.json
@@ -30,10 +30,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to posts_url, notice: "Comentario exitosamente creado" }
+        format.html { redirect_to post_path(@post), notice: "Comentario exitosamente creado" }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render "posts/show", status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -56,10 +56,10 @@ class CommentsController < ApplicationController
   def destroy
     respond_to do |format|
       if  @comment.destroy
-        format.html { redirect_to posts_url, notice: "Comentario eliminado" }
+        format.html { redirect_to post_path(@post), notice: "Comentario eliminado" }
         format.json { head :no_content }
       else
-        format.html { redirect_to posts_url, alert: "Hubo un problema al eliminar el comentario." }
+        format.html { redirect_to post_path(@post), notice: "Hubo un problema al eliminar el comentario." }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +74,6 @@ class CommentsController < ApplicationController
 
     def set_post
       @post = Post.find(params[:post_id]) # Aquí obtengo el post según el ID pasado en la ruta
-      puts @post
     end
 
     def set_comment
