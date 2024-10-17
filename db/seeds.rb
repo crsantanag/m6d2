@@ -7,7 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Post.create!(image: "https://img.freepik.com/foto-gratis/gato-rojo-o-blanco-i-estudio-blanco_155003-
-13189.jpg?w=2000", title: "En la mente de un gato", description: "Es un libro que explica de forma
+#
+require "faker"
+#
+#   OBS: requiere subir imágenes
+#
+Post.create!(title: "En la mente de un gato", description: "Es un libro que explica de forma
 simple lo que realmente se sabe de los gatos y lo mucho que falta por entender. Es un libro que
 todo aquel que tenga o quiera tener un gato encontrará útil.", user_id: User.last.id)
