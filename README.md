@@ -34,7 +34,7 @@ cd m6d2
    - faker (crea datos ficticios)  
    - pagy  (paginación)  
    - figaro (manejo de credenciales)  
-   - devise (autenticación) 
+   - devise (autenticación)  
    Adicionalmente debes instalar la gema ActiveStorage: rails active_storage:install  
   
 4. Crea la base de datos, realiza la migración y carga los datos de prueba (ejecutar archivo seed.rb)  
@@ -45,11 +45,12 @@ cd m6d2
 ## Ejecutando las pruebas
 Levanta el servidor y prueba la aplición.  
 root está en /  
-Este proyecto no cuenta con pruebas automatizadas. Sin embargo, puedes probar manualmente todas las funcionalidades.  
+  
+Este proyecto cuenta con pruebas automatizadas. Sin embargo, también puedes probar manualmente todas las funcionalidades.  
   
 ## Licencia  
   
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE.md](LICENSE.md) para obtener más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE.md](LICENSE.md) para obtener más detalles.  
   
 ⌨ ️Carlos Santana (https://github.com/crsantanag)
 
