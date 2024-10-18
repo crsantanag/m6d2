@@ -8,9 +8,10 @@ Ruby on Rails - postgresql
 ## Descripción
 
 Esta aplicación realiza, usando un modelo de un Diario - TheRialNews,  el proceso de publicar noticias, realizar comentarios a las publicaciones y con control de acceso (Login, Logout, Sign_up, Recovery ) para publicar, comentar o sólo ver noticias y comentarios.  
-
-La publicación permite subir una imagen para ilustrar la noticia.  
-
+  
+OBS: - La publicación permite subir una imagen para ilustrar la noticia.  
+     - Si se desea cambiar los datos del usuario debe hacer click sonbre su nombre en la barra de navegación.  
+  
 ## Inicio
 
 Estas instrucciones te ayudarán a obtener una copia del proyecto y a ejecutarlo en tu máquina local para fines de desarrollo y prueba.
