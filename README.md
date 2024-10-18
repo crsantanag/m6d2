@@ -14,6 +14,10 @@ OBS:
     - Los artículos se muestran en orden descendiente según la fecha de creación del mismo.  
     - La aplicación permite determinadas vistas según el perfil del usuario. Sólo el usuario "admin" puede crear o eliminar artículos y también puede eliminar comentarios (p.e. comentarios ofensivos).  
     - Si se desea cambiar los datos del usuario, éste debe hacer click sonbre su nombre en la barra de navegación y lo lleva a la vista de modificación.  
+
+## Modelo de datos  
+  
+![Modelo](modelo.jpg)
   
 ## Inicio
 

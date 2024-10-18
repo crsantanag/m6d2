@@ -7,11 +7,32 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-#
 require "faker"
-#
-#   OBS: requiere subir imágenes
-#
-Post.create!(title: "En la mente de un gato", description: "Es un libro que explica de forma
-simple lo que realmente se sabe de los gatos y lo mucho que falta por entender. Es un libro que
-todo aquel que tenga o quiera tener un gato encontrará útil.", user_id: User.last.id)
+
+User.create!(
+  email: "admin2@therailnews.cl",
+  password: "admin1",
+  role: 2,
+  name: "Administrador",
+  phone: 0,
+  age: 0)
+
+User.create!(
+  email: "user2@therailnews.cl",
+  password: "user01",
+  role: 0,
+  name: "Usuario",
+  phone: 0,
+  age: 0)
+
+Post.create!(
+  image: File.open(Rails.root.join("./app/assets/images/imagen1.jpg")),
+  title: "Taiwán, estrecho en tensión: Un corredor estratégico bajo la sombra de China y el comercio mundial",
+  description: "Desde hace más de siete décadas, esta franja marítima se ha convertido en un área de alto riesgo, donde convergen intereses políticos y económicos a nivel global. Las recientes maniobras militares de Beijing no hacen más que acentuar la fragilidad de este espacio.",
+  user_id: User.last.id)
+
+ Post.create!(
+  image: File.open(Rails.root.join("./app/assets/images/imagen2.jpg")),
+  title: "Inminente recorte: Operadores financieros lanzan apuesta previo a decisión de tasa de interés esta semana",
+  description: "Los analistas consultados por el Banco Central esperan que el consejo del instituto emisor se incline por una baja de 25 puntos base, para fijar la tasa rectora en 5,25%.",
+  user_id: User.last.id)
